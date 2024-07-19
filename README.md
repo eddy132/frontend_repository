@@ -131,12 +131,13 @@ getData("data1.json")
   })
   ```
   这样写的好处有：
-  1）Promise 提供了 .catch() 方法，允许你在链的末端捕获并处理所有异步操作中发生的错误，而不需要在每个回调中单独处理错误。
-  2) Promise 允许你以链式调用的方式处理异步操作的结果，而不是将回调函数嵌套在其他回调函数中。这使得代码更加清晰、易于理解和维护。
-  3) Promise 允许你使用 .then() 和 .catch() 来定义异步操作的成功和失败路径，这使得控制流程更加直观。
+- Promise 提供了 .catch() 方法，允许你在链的末端捕获并处理所有异步操作中发生的错误，而不需要在每个回调中单独处理错误。
+- Promise 允许你以链式调用的方式处理异步操作的结果，而不是将回调函数嵌套在其他回调函数中。这使得代码更加清晰、易于理解和维护。
+- Promise 允许你使用 .then() 和 .catch() 来定义异步操作的成功和失败路径，这使得控制流程更加直观。
 
-  ### 5、使用 async/await 来简化 Promise 的使用
-  ``` javascript {.line-numbers}
+### 5、使用 async/await 来简化 Promise 的使用
+
+``` javascript {.line-numbers}
   // 封装ajax请求
       function getData(url, data = {}) {
         return new Promise((resolve, reject) => {
@@ -174,6 +175,6 @@ getData("data1.json")
       // 调用 async 函数
       fetchDataSequentially();
 ```
-1. 定义了一个新的异步函数 fetchDataSequentially：使用 async 关键字定义，这样你就可以在函数内部使用 await。
-2.  使用 await 等待每个 getData 调用：这会暂停 fetchDataSequentially 函数的执行，直到对应的 Promise 被解决。
-3. 避免了嵌套回调和 Promise 链，使代码结构更清晰。
+- 定义了一个新的异步函数 fetchDataSequentially：使用 async 关键字定义，这样你就可以在函数内部使用 await。
+-  使用 await 等待每个 getData 调用：这会暂停 fetchDataSequentially 函数的执行，直到对应的 Promise 被解决。
+- 避免了嵌套回调和 Promise 链，使代码结构更清晰。

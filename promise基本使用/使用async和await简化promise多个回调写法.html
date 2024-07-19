@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+  </head>
+  <body>
+    <script>
+      // 封装ajax请求
+      function getData(url, data = {}) {
+        return new Promise((resolve, reject) => {
+          $.ajax({
+            // 发送请求类型
+            type: "GET",
+            url: url,
+            data: data,
+            success: function (res) {
+              // 修改Promise状态为成功, 修改Promise的结果res
+              resolve(res);
+            },
+            error: function (res) {
+              // 修改Promise的状态为失败,修改Promise的结果res
+              reject(res);
+            },
+          });
+        });
+      }
+
+      // 使用 async/await 调用函数
+      async function fetchDataSequentially() {
+        try {
+          const data1 = await getData("data1.json");
+          const { id } = data1;
+          const data2 = await getData("data2.json", { id });
+          const { username } = data2; // 这里应该是 username 而不是 usename
+          const data3 = await getData("data3.json", { username });
+          console.log(data3);
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
+      }
+
+      // 调用 async 函数
+      fetchDataSequentially();
+    </script>
+  </body>
+</html>

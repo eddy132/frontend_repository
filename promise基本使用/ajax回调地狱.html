@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+  </head>
+  <body>
+    <script>
+      //场景：通过ajax请求id，再根据id请求用户名，再根据用户名请求邮箱
+      //发送ajax请求
+      $.ajax({
+        type: "GET",
+        url: "./data1.json",
+        success: function (res) {
+          //response,result
+          const { id } = res
+          console.log(id)
+
+          $.ajax({
+            type: "GET",
+            url: "./data2.json",
+            data: { id }, //相当于{id:id}
+            success: function (res) {
+              const { username } = res
+            //   console.log(username)
+
+            $.ajax({
+                type:'GET',
+                url:'/data3.json',
+                data:{username},
+                success:function(res){
+                    console.log(res)
+                }
+            })
+            },
+          })
+        },
+      })
+
+      //思考：在哪里发送ajax请求
+    </script>
+  </body>
+</html>

@@ -35,7 +35,7 @@
           const data1 = await getData("data1.json");
           const { id } = data1;
           const data2 = await getData("data2.json", { id });
-          const { username } = data2; // 这里应该是 username 而不是 usename
+          const { username } = data2; 
           const data3 = await getData("data3.json", { username });
           console.log(data3);
         } catch (error) {
